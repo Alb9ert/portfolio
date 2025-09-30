@@ -1,6 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 @import "tailwindcss";
 
+/* Smooth scrolling */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
 /* Set PP Neue Montreal as default font for body */
 body {
     background-color: #ececec;
@@ -16,6 +37,17 @@ body {
 .font-arcade {
   font-family: 'Press Start 2P', cursive !important;
 }
+
+/* Arcade green background utility */
+.bg-arcadegreen {
+  background-color: #18837717 !important;
+}
+
+.bg-arcadegreen-dark {
+    background-color: #0f574f17 !important;
+  }
+
+
 
 /* PP Neue Montreal Font Family */
 @font-face {

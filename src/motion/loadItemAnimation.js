@@ -36,4 +36,17 @@ export const blurInAnimation = {
     },
   },
 };
+
+// Smooth floating animation for scroll indicator
+export const floatingAnimation = {
+  animate: {
+    y: [0, -10, 0],
+    transition: {
+      duration: 2,
+      ease: "easeInOut",
+      repeat: Infinity,
+      repeatType: "loop",
+    },
+  },
+};
     

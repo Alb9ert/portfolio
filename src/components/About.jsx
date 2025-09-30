@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { blurInAnimation } from "../motion/loadItemAnimation";
+import { blurInAnimation, floatingAnimation } from "../motion/loadItemAnimation";
 
 function About() {
     return (
@@ -14,10 +14,7 @@ function About() {
             <h1 className="text-6xl mb-2 font-semibold">Albert Hansen</h1>
             <h1 className="text-6xl font-semibold mb-14">I love writing code!</h1>
             <p className="text-xl mb-2">I am an software engineering student based in Denmark, with an eye for development. I love working on personal projects as well as big organizational projects that requires teamwork and an agile approach. <br /> <br />Check out my page and gain an insight of what I have to offer, as well as have some fun with some old projects I have made with plenty still in the works!</p>
-            
-            <div className="fixed bottom-10 right-14 text-sm">
-                (SCROLL DOWN)
-            </div>
+        
         </motion.div>
     );
 }
