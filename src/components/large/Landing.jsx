@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import Navbar from './Navbar';
-import About from './About';
-import { floatingAnimation } from "../motion/loadItemAnimation";
+import Navbar from '../nav/Navbar';
+import About from '../small/About';
+import { floatingAnimation } from "../../motion/loadItemAnimation";
 
 function Landing() {
   return (

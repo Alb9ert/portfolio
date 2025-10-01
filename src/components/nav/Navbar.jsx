@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { waterfallAnimation } from "../motion/loadItemAnimation";
-import { slidingTextVariants } from "../motion/slidingTextAnimation";
+import { waterfallAnimation } from "../../motion/loadItemAnimation";
+import { slidingTextVariants } from "../../motion/slidingTextAnimation";
 
 function NavItem({ href, label, index }) {
   return (

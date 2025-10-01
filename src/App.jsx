@@ -1,7 +1,8 @@
 import { useEffect } from "react"
 import Lenis from "@studio-freight/lenis"
-import Landing from "./components/Landing"
-import Skills from "./components/Skills"
+import Landing from "./components/large/Landing"
+import Skills from "./components/large/Skills"
+import Projects from "./components/large/Projects"
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
     <>
       <Landing />
       <Skills />
+      <Projects />
     </>
   )
 }

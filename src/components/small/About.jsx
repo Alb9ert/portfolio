@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { blurInAnimation, floatingAnimation } from "../motion/loadItemAnimation";
+import { blurInAnimation, floatingAnimation } from "../../motion/loadItemAnimation";
 
 function About() {
     return (
