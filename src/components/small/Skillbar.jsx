@@ -16,10 +16,10 @@ function Skillbar({ logo, name, proficiency, logoSize = "w-full" }) {
           </p>
         </div>
         {/* Progress bar background */}
-        <div className="w-full h-1 bg-black/20 relative overflow-hidden">
+        <div className="w-full h-1 bg-black/20 relative overflow-hidden rounded-full shadow-sm">
           {/* Progress bar fill */}
           <div 
-            className="absolute top-0 left-0 h-full bg-black transition-all duration-500"
+            className="absolute top-0 left-0 h-full bg-black transition-all duration-500 rounded-full shadow-sm"
             style={{ width: `${proficiency}%` }}
           />
         </div>

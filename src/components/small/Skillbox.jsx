@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 function Skillbox({ skills, title }) {
   return (
     <motion.div 
-      className="flex-1 p-8 border-2 border-black/20 rounded-lg bg-white/40 backdrop-blur-sm bg-arcadegreen"
+      className="flex-1 p-8 border-2 border-black/20 rounded-lg bg-white/40 backdrop-blur-sm bg-arcadegreen shadow-lg hover:shadow-xl transition-shadow duration-300"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: [0.19, 1, 0.22, 1] }}

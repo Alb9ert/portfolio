@@ -3,6 +3,7 @@ import Lenis from "@studio-freight/lenis"
 import Landing from "./components/large/Landing"
 import Skills from "./components/large/Skills"
 import Projects from "./components/large/Projects"
+import Links from "./components/large/Links"
 
 
 function App() {
@@ -32,9 +33,18 @@ function App() {
 
   return (
     <>
-      <Landing />
-      <Skills />
-      <Projects />
+      <div id="about">
+        <Landing />
+      </div>
+      <div id="skills">
+        <Skills />
+      </div>
+      <div id="projects">
+        <Projects />
+      </div>
+      <div id="contact">
+        <Links />
+      </div>
     </>
   )
 }

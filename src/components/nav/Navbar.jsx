@@ -3,7 +3,24 @@ import { useState } from "react";
 import { waterfallAnimation } from "../../motion/loadItemAnimation";
 import { slidingTextVariants } from "../../motion/slidingTextAnimation";
 
+// Smooth scroll function
+const smoothScrollTo = (elementId) => {
+  const element = document.getElementById(elementId);
+  if (element) {
+    element.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  }
+};
+
 function NavItem({ href, label, index }) {
+  const handleClick = (e) => {
+    e.preventDefault();
+    const elementId = href.replace('#', '');
+    smoothScrollTo(elementId);
+  };
+
   return (
     <motion.li
       initial="hidden"
@@ -13,7 +30,8 @@ function NavItem({ href, label, index }) {
     >
       <motion.a 
         href={href} 
-        className="leading-tight font-medium block relative overflow-hidden"
+        onClick={handleClick}
+        className="leading-tight font-medium block relative overflow-hidden cursor-pointer"
         initial="initial"
         whileHover="hover"
         animate="animate"
@@ -39,6 +57,12 @@ function NavItem({ href, label, index }) {
 function ContactButton({ href, label, index }) {
   const [isHovered, setIsHovered] = useState(false);
 
+  const handleClick = (e) => {
+    e.preventDefault();
+    const elementId = href.replace('#', '');
+    smoothScrollTo(elementId);
+  };
+
   return (
      <motion.li 
         className="list-none text-base leading-tight px-7 py-3 bg-black rounded-full bg-black text-white cursor-pointer"
@@ -51,6 +75,7 @@ function ContactButton({ href, label, index }) {
      >
       <motion.a 
         href={href} 
+        onClick={handleClick}
         className="leading-tight font-medium block relative overflow-hidden"
         initial="initial"
         animate={isHovered ? "hover" : "animate"}
@@ -91,8 +116,8 @@ function Navbar() {
       <div className="flex-1 flex justify-end mr-68">
         <ul className="flex space-x-6 justify-end">
           <NavItem href="#about" label="ABOUT" index={1} />
-          <NavItem href="#projects" label="SKILLS" index={2} />
-          <NavItem href="#skills" label="PROJECTS" index={3} />
+          <NavItem href="#skills" label="SKILLS" index={2} />
+          <NavItem href="#projects" label="PROJECTS" index={3} />
           <NavItem href="#contact" label="LINKS" index={4} />
         </ul>
       </div>
