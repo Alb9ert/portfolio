@@ -1,5 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 const slidingTextVariants = {
   firstText: {
@@ -48,13 +49,21 @@ const slidingTextVariants = {
   },
 };
 
-function ProjectCard( { title, image, link, number, date } ) {
+function ProjectCard( { title, image, link, number, date, projectId } ) {
     const ref = useRef(null);
+    const navigate = useNavigate();
     const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+    const handleClick = () => {
+        if (projectId) {
+            navigate(`/project/${projectId}`);
+        }
+    };
 
     return (
         <motion.div 
             ref={ref}
+            onClick={handleClick}
             className="w-full h-full flex-col group cursor-pointer"
             initial="initial"
             whileHover="hover"
@@ -87,11 +96,8 @@ function ProjectCard( { title, image, link, number, date } ) {
                 }}
             />
             <div className="px-1 flex justify-between text-base font-weight-500 mt-3">
-                <p className="font-medium">{number}&nbsp;&nbsp;&nbsp; {title}</p>
-                <motion.p 
-                    className="relative overflow-hidden"
-                    variants={slidingTextVariants}
-                >
+                <p className="font-medium">{number}{number && "\u00A0\u00A0\u00A0"}{title}</p>
+                <div className="relative overflow-hidden">
                     <motion.span 
                         variants={slidingTextVariants.firstText}
                         className="block"
@@ -100,12 +106,12 @@ function ProjectCard( { title, image, link, number, date } ) {
                     </motion.span>
                     <motion.span
                         variants={slidingTextVariants.secondText}
-                        className="absolute top-0 left-0 block"
+                        className="absolute top-0 left-0 block whitespace-nowrap"
                         aria-hidden
                     >
                         View Project &rarr;
                     </motion.span>
-                </motion.p>
+                </div>
             </div>
         </motion.div>
     );

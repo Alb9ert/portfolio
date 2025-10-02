@@ -1,15 +1,19 @@
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { motion, useInView } from "framer-motion";
+import { useState, useRef } from "react";
 import { waterfallAnimation } from "../../motion/loadItemAnimation";
 import { slidingTextVariants } from "../../motion/slidingTextAnimation";
+import { getLenis } from "../../App";
 
-// Smooth scroll function
+// Smooth scroll function using Lenis
 const smoothScrollTo = (elementId) => {
+  const lenis = getLenis();
   const element = document.getElementById(elementId);
-  if (element) {
-    element.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
+  
+  if (element && lenis) {
+    lenis.scrollTo(element, {
+      offset: 0,
+      duration: 2.5,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     });
   }
 };
@@ -99,18 +103,41 @@ function ContactButton({ href, label, index }) {
 }
 
 function Navbar() {
+  const portfolioRef = useRef(null);
+  const isInView = useInView(portfolioRef, { once: true, margin: "-50px" });
+
   return (
     <nav className="px-14 py-7 flex items-center justify-between font-medium">
       {/* Left section */}
-      <motion.div 
-        className="flex-1 flex justify-start"
-        initial="hidden"
-        animate="visible"
-        custom={0}
-        variants={waterfallAnimation}
-      >
-        <a className="text-5xl leading-tight" href="/">(01) Portfolio</a>
-      </motion.div>
+      <div className="flex-1 flex justify-start">
+        <a className="text-5xl leading-tight" href="/">
+          <motion.span
+            ref={portfolioRef}
+            initial={{
+              opacity: 0,
+              y: 20,
+            }}
+            animate={
+              isInView
+                ? {
+                    opacity: 1,
+                    y: 0,
+                  }
+                : {
+                    opacity: 0,
+                    y: 20,
+                  }
+            }
+            transition={{
+              duration: 1.2,
+              ease: [0.19, 1, 0.22, 1],
+              delay: 0.1,
+            }}
+          >
+            Portfolio
+          </motion.span>
+        </a>
+      </div>
       
       {/* Middle section */}
       <div className="flex-1 flex justify-end mr-68">

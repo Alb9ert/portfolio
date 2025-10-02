@@ -51,20 +51,20 @@ function Projects() {
                 </motion.h1>
                 <div className="w-full mt-25 flex flex-col gap-y-35 px-8">
                     <div className="flex gap-x-16">
-                    <ProjectCard title="Bookly" description="A book recommendation system" image={booklyFrontTwo} link="https://bookly.com" number="(02)" date="Finished 2025." />
-                    <ProjectCard title="Bookly" description="A book recommendation system" image={booklyFront} link="https://bookly.com" number="(02)" date="Finished 2025." />
+                    <ProjectCard title="Bookly" description="A book recommendation system" image={booklyFrontTwo} link="https://bookly.com" number="(01)" date="Finished 2025." projectId="bookly" />
+                    <ProjectCard title="Bookly" description="A book recommendation system" image={booklyFront} link="https://bookly.com" number="(01)" date="Finished 2025." projectId="bookly" />
                     </div>
                     <div className="flex gap-x-16">
-                    <ProjectCard title="CookAI" description="A recipe recommendation system" image={cookaiFrontTwo} link="https://cookai.com" number="(03)" date="Finished 2024." />
-                    <ProjectCard title="CookAI" description="A recipe recommendation system" image={cookaiFront} link="https://cookai.com" number="(03)" date="Finished 2024." />
+                    <ProjectCard title="CookAI" description="A recipe recommendation system" image={cookaiFrontTwo} link="https://cookai.com" number="(02)" date="Finished 2024." projectId="cookai" />
+                    <ProjectCard title="CookAI" description="A recipe recommendation system" image={cookaiFront} link="https://cookai.com" number="(02)" date="Finished 2024." projectId="cookai" />
                     </div>
                     <div className="flex gap-x-16">
-                    <ProjectCard title="CyberMatch" description="A cyber security company website" image={cybermatchFrontTwo} link="https://cybermatch.com" number="(04)" date="Finished 2024." />
-                    <ProjectCard title="" description="A cyber security company website" image={cybermatchFront} link="https://cybermatch.com" number="" date="Finished 2024." />
+                    <ProjectCard title="CyberMatch" description="A cyber security company website" image={cybermatchFrontTwo} link="https://cybermatch.com" number="(03)" date="Finished 2024." projectId="cybermatch" />
+                    <ProjectCard title="" description="A cyber security company website" image={cybermatchFront} link="https://cybermatch.com" number="" date="Finished 2024." projectId="cybermatch" />
                     </div>
                     <div className="flex gap-x-16">
-                    <ProjectCard title="PseudoMat" description="A pseudomat website" image={pseudomatFrontTwo} link="https://pseudomat.com" number="(05)" date="Finished 2024." />
-                    <ProjectCard title="PseudoMat" description="A pseudomat website" image={pseudomatFront} link="https://pseudomat.com" number="(05)" date="Finished 2024." />
+                    <ProjectCard title="PseudoMat" description="A pseudomat website" image={pseudomatFrontTwo} link="https://pseudomat.com" number="(04)" date="Finished 2024." projectId="pseudomat" />
+                    <ProjectCard title="PseudoMat" description="A pseudomat website" image={pseudomatFront} link="https://pseudomat.com" number="(04)" date="Finished 2024." projectId="pseudomat" />
                     </div>
                 </div>
             </div>

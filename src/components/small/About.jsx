@@ -1,14 +1,35 @@
-import { motion } from "framer-motion";
-import { blurInAnimation, floatingAnimation } from "../../motion/loadItemAnimation";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 function About() {
+    const aboutRef = useRef(null);
+    const isInView = useInView(aboutRef, { once: true, margin: "-50px" });
+
     return (
         <motion.div 
+            ref={aboutRef}
             className="px-85 py-20 relative"
             style={{ minHeight: 'calc(100vh - 135px)' }}
-            initial="hidden"
-            animate="visible"
-            variants={blurInAnimation}
+            initial={{
+                opacity: 0,
+                y: 20,
+            }}
+            animate={
+                isInView
+                    ? {
+                        opacity: 1,
+                        y: 0,
+                    }
+                    : {
+                        opacity: 0,
+                        y: 20,
+                    }
+            }
+            transition={{
+                duration: 1.2,
+                ease: [0.19, 1, 0.22, 1],
+                delay: 0.1,
+            }}
         >
             <h1 className="text-lg ml-1 font-arcade mb-3 font-medium text-arcade">Hello, my name is</h1>
             <h1 className="text-6xl mb-2 font-semibold">Albert Hansen</h1>
