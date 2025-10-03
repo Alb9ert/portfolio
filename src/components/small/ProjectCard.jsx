@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const slidingTextVariants = {
   firstText: {
@@ -51,29 +51,22 @@ const slidingTextVariants = {
 
 function ProjectCard( { title, image, link, number, date, projectId } ) {
     const ref = useRef(null);
-    const navigate = useNavigate();
     const isInView = useInView(ref, { once: true, margin: "-50px" });
 
-    const handleClick = () => {
-        if (projectId) {
-            navigate(`/project/${projectId}`);
-        }
-    };
-
     return (
-        <motion.div 
-            ref={ref}
-            onClick={handleClick}
-            className="w-full h-full flex-col group cursor-pointer"
-            initial="initial"
-            whileHover="hover"
-            animate="animate"
-        >
+        <Link to={`/project/${projectId}`} className="block">
+            <motion.div 
+                ref={ref}
+                className="w-full h-full flex-col group cursor-pointer"
+                initial="initial"
+                whileHover="hover"
+                animate="animate"
+            >
             <motion.img 
                 className="shadow-[0_0_16px_rgba(0,0,0,0.15)] w-full h-auto" 
                 src={image} 
                 alt={title}
-                loading="lazy"
+                loading="eager"
                 decoding="async"
                 style={{
                     imageRendering: '-webkit-optimize-contrast'
@@ -114,6 +107,7 @@ function ProjectCard( { title, image, link, number, date, projectId } ) {
                 </div>
             </div>
         </motion.div>
+        </Link>
     );
 }
 

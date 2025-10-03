@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom"
 import Lenis from "@studio-freight/lenis"
 import Landing from "./components/large/Landing"
 import Skills from "./components/large/Skills"
@@ -11,6 +11,46 @@ import ProjectDetail from "./components/large/ProjectDetail"
 let lenisInstance = null;
 
 export const getLenis = () => lenisInstance;
+
+// Reset scroll position on navigation
+function ScrollToTop() {
+  const location = useLocation();
+
+  useEffect(() => {
+    const lenis = getLenis();
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname]);
+
+  return null;
+}
+
+// Simple checkpoint system - scroll to specific sections when needed
+function CheckpointScroll() {
+  const location = useLocation();
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      // Check if we need to scroll to a specific section
+      const scrollToSection = localStorage.getItem('scrollToSection');
+      if (scrollToSection) {
+        localStorage.removeItem('scrollToSection');
+        const element = document.getElementById(scrollToSection);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+        return;
+      }
+    }, 100);
+
+    return () => clearTimeout(timeoutId);
+  }, [location]);
+
+  return null;
+}
 
 function HomePage() {
   return (
@@ -33,13 +73,20 @@ function HomePage() {
 
 function App() {
   useEffect(() => {
+    // Disable browser scroll restoration
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
     // Initialize Lenis smooth scroll
     const lenis = new Lenis({
-      duration: 2.5,
+      duration: 1.5,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       direction: "vertical",
       smooth: true,
       smoothTouch: false,
+      syncTouch: false,
+      touchMultiplier: 2,
     })
 
     // Store instance globally
@@ -62,6 +109,8 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop />
+      <CheckpointScroll />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/project/:projectId" element={<ProjectDetail />} />

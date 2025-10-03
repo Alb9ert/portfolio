@@ -4,21 +4,13 @@ import { useRef } from "react";
 import Skillbar from "../small/Skillbar";
 import Skillbox from "../small/Skillbox";
 
-import reactImg from "../../assets/barImages/ReactBar.avif";
 import reactLogo from "../../assets/logos/react.png";
-import javascriptImg from "../../assets/barImages/javascriptBar.avif";
 import javascriptLogo from "../../assets/logos/javascript.png";
-import PostgresImg from "../../assets/barImages/PostgresBar.avif";
 import PostgresLogo from "../../assets/logos/postgresql.png";
-import ExpressBar from "../../assets/barImages/ExpressBar.avif";
 import ExpressLogo from "../../assets/logos/express.png";
-import SpringbootBar from "../../assets/barImages/SpringbootBar.avif";
 import SpringbootLogo from "../../assets/logos/springboot.png";
 import gitLogo from "../../assets/logos/git.svg";
-import gitImg from "../../assets/barImages/gitBar.avif";
 import mongodbLogo from "../../assets/logos/mongodb.png";
-import mongodbImg from "../../assets/barImages/mongoBar.avif";
-import cssImg from "../../assets/barImages/cssBar.avif";
 import cssLogo from "../../assets/logos/css.png";
 
 function Skills() {

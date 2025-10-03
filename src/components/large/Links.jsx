@@ -53,7 +53,7 @@ function Links() {
             src={albertImg}
             alt="albert"
             className="w-full h-2/3 object-cover rounded-lg shadow-[0_0_16px_rgba(0,0,0,0.15)] mb-5 mt-10"
-            loading="lazy"
+            loading="eager"
             decoding="async"
             style={{
               imageRendering: "-webkit-optimize-contrast",
@@ -137,7 +137,7 @@ function Links() {
           </div>
         </div>
       </div>
-      <div className="h-10 justify-center w-full  z-20 bg-[#ececec]"></div>
+      <div className="h-32 justify-center w-full z-20 bg-[#ececec]"></div>
     </div>
   );
 }
