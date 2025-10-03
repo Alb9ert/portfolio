@@ -42,8 +42,7 @@ function ProjectDetail() {
   };
 
     return (
-    <div className="bg-[#ececec] overflow-hidden flex flex-col relative">
-      <Navbar />
+    <div className="pt-25 bg-[#ececec] overflow-hidden flex flex-col relative">
       
 
       {/* Image Gallery at the top */}

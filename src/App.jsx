@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom"
 import Lenis from "@studio-freight/lenis"
+import Navbar from "./components/nav/Navbar"
 import Landing from "./components/large/Landing"
 import Skills from "./components/large/Skills"
 import Projects from "./components/large/Projects"
@@ -109,6 +110,7 @@ function App() {
 
   return (
     <Router>
+      <Navbar />
       <ScrollToTop />
       <CheckpointScroll />
       <Routes>

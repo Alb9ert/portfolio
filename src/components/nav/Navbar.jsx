@@ -1,4 +1,4 @@
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useState, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { waterfallAnimation } from "../../motion/loadItemAnimation";
@@ -118,7 +118,7 @@ function ContactButton({ href, label, index }) {
 
   return (
      <motion.li 
-        className="list-none text-base leading-tight px-7 py-3 bg-black rounded-full bg-black text-white cursor-pointer"
+        className="list-none text-base leading-tight px-4 xl:px-7 py-3 bg-black xl:rounded-full bg-black text-white cursor-pointer w-full xl:w-auto"
         initial="hidden"
         animate="visible"
         custom={index}
@@ -153,15 +153,17 @@ function ContactButton({ href, label, index }) {
 
 function Navbar() {
   const portfolioRef = useRef(null);
+  const mobileMenuRef = useRef(null);
   const isInView = useInView(portfolioRef, { once: true, margin: "-50px" });
+  const isMobileMenuInView = useInView(mobileMenuRef, { once: true, margin: "-50px" });
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <>
-      <nav className="px-4 md:px-14 py-7 flex items-center justify-between font-medium relative">
+      <nav className={`px-4 md:px-14 py-7 flex items-center justify-between font-medium fixed top-0 left-0 right-0 z-[9999] transition-colors duration-300 ${isMobileMenuOpen ? 'bg-[#ececec]' : 'bg-transparent'}`}>
         {/* Left section - Portfolio */}
-        <div className="flex-1 flex justify-start">
-          <a className="text-3xl md:text-5xl leading-tight" href="/">
+        <div className="flex-1 flex justify-start items-center">
+          <a className="text-2xl md:text-4xl leading-tight font-bold" href="/">
             <motion.span
               ref={portfolioRef}
               initial={{
@@ -191,7 +193,7 @@ function Navbar() {
         </div>
         
         {/* Desktop navigation */}
-        <div className="hidden lg:flex flex-1 justify-end mr-68">
+        <div className="hidden xl:flex flex-1 justify-end mr-68">
           <ul className="flex space-x-6 justify-end">
             <NavItem href="#about" label="ABOUT" index={1} />
             <NavItem href="#skills" label="SKILLS" index={2} />
@@ -201,40 +203,66 @@ function Navbar() {
         </div>
         
         {/* Desktop Contact Button */}
-        <div className="hidden lg:flex justify-end">
+        <div className="hidden xl:flex justify-end">
           <ContactButton href="#contact" label="CONTACT ME" index={5} />
         </div>
         
         {/* Mobile Menu Button */}
-        <div className="lg:hidden">
-          <button
+        <div className="xl:hidden flex items-center">
+          <motion.button
+            ref={mobileMenuRef}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="text-2xl font-medium"
+            className="cursor-pointer text-sm font-medium tracking-wider bg-black text-white px-4 py-2 rounded-sm hover:bg-gray-800 transition-colors duration-200"
+            initial={{
+              opacity: 0,
+              y: 20,
+            }}
+            animate={
+              isMobileMenuInView
+                ? {
+                    opacity: 1,
+                    y: 0,
+                  }
+                : {
+                    opacity: 0,
+                    y: 20,
+                  }
+            }
+            transition={{
+              duration: 1.2,
+              ease: [0.19, 1, 0.22, 1],
+              delay: 0.2,
+            }}
           >
-            MENU
-          </button>
+            {isMobileMenuOpen ? "CLOSE" : "MENU"}
+          </motion.button>
         </div>
       </nav>
 
       {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          className="lg:hidden bg-[#ececec] px-4 py-6 border-t border-gray-300"
-        >
-          <ul className="flex flex-col space-y-4">
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="xl:hidden bg-[#ececec] px-4 pt-6 border-t border-gray-300 fixed top-[84px] left-0 right-0 z-[9999]"
+          >
+          <ul className="flex flex-col space-y-8">
             <NavItem href="#about" label="ABOUT" index={1} onMobileMenuClose={() => setIsMobileMenuOpen(false)} />
             <NavItem href="#skills" label="SKILLS" index={2} onMobileMenuClose={() => setIsMobileMenuOpen(false)} />
             <NavItem href="#projects" label="PROJECTS" index={3} onMobileMenuClose={() => setIsMobileMenuOpen(false)} />
             <NavItem href="#contact" label="LINKS" index={4} onMobileMenuClose={() => setIsMobileMenuOpen(false)} />
-            <li className="pt-4">
-              <ContactButton href="#contact" label="CONTACT ME" index={5} />
+            <li>
+              <div className="w-screen -mx-4">
+                <ContactButton href="#contact" label="CONTACT ME" index={5} />
+              </div>
             </li>
           </ul>
         </motion.div>
-      )}
+        )}
+      </AnimatePresence>
     </>
   );
 }
