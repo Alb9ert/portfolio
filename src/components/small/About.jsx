@@ -50,7 +50,7 @@ function About() {
             >
                 Aspiring Software Engineer
             </motion.h1>
-            <p className="text-center sm:text-left text-base sm:text-lg md:text-xl xl:text-2xl mb-2 leading-relaxed px-8 sm:px-0">I’m a software engineering student based in Copenhagen with a strong passion for development and problem-solving. I enjoy working on both personal projects and large-scale organizational workflows that require collaboration, creativity, and an agile mindset.<br /> <br />
+            <p className="text-center sm:text-left text-sm sm:text-lg md:text-xl xl:text-2xl mb-2 leading-relaxed px-8 sm:px-0">I'm a software engineering student based in Copenhagen with a strong passion for development and problem-solving. I enjoy working on both personal projects and large-scale organizational workflows that require collaboration, creativity, and an agile mindset.<br /> <br />
             Take a look around to explore my work, and discover some of the projects I’ve built — with many more still in progress! Feel free to contact me if you have any questions or want to work together.</p>
         
         </motion.div>
