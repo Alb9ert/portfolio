@@ -8,7 +8,7 @@ function About() {
     return (
         <motion.div 
             ref={aboutRef}
-            className="px-4 sm:px-8 md:px-16 lg:px-32 xl:px-60 sm:py-12 md:py-16 lg:py-20 relative pt-16 sm:pt-30 md:pt-16 xl:pt-45"
+            className="px-4 sm:px-8 md:px-16 lg:px-32 xl:px-60 sm:py-12 md:py-16 lg:py-20 relative pt-8 sm:pt-30 md:pt-16 xl:pt-45"
             style={{ minHeight: 'calc(100vh - 135px)' }}
             initial={{
                 opacity: 0,
