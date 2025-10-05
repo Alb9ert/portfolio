@@ -183,8 +183,8 @@ function ProjectDetail() {
             delay: 0.1
           }}
          >
-           <h1 className="text-lg sm:text-xl md:text-2xl font-medium text-gray-500">{project?.number} &nbsp; &nbsp; <span className="text-black font-medium">{project?.title}</span></h1>
-           <p className="text-lg sm:text-xl md:text-2xl font-medium">{project?.description}</p>
+           <h1 className="text-lg sm:text-xl md:text-2xl font-medium">{project?.number} </h1>
+           <p className="text-lg sm:text-xl md:text-2xl font-medium">{project?.title}</p>
          </motion.div>
          <motion.div 
            ref={descriptionRef}

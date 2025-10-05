@@ -8,7 +8,7 @@ function About() {
     return (
         <motion.div 
             ref={aboutRef}
-            className="px-4 sm:px-8 md:px-16 lg:px-32 xl:px-60 sm:py-12 md:py-16 lg:py-20 relative pt-16 sm:pt-30 md:pt-16 xl:pt-50"
+            className="px-4 sm:px-8 md:px-16 lg:px-32 xl:px-60 sm:py-12 md:py-16 lg:py-20 relative pt-16 sm:pt-30 md:pt-16 xl:pt-45"
             style={{ minHeight: 'calc(100vh - 135px)' }}
             initial={{
                 opacity: 0,
@@ -48,9 +48,10 @@ function About() {
                 transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
                 viewport={{ once: true }}
             >
-                I love writing code!
+                Aspiring Software Engineer
             </motion.h1>
-            <p className="text-center sm:text-left text-base sm:text-lg md:text-xl xl:text-2xl mb-2 leading-relaxed px-8 sm:px-0">I am an software engineering student based in Denmark, with an eye for development. I love working on personal projects as well as big organizational projects that requires teamwork and an agile approach. <br /> <br />Check out my page and gain an insight of what I have to offer, as well as have some fun with some old projects I have made with plenty still in the works!</p>
+            <p className="text-center sm:text-left text-base sm:text-lg md:text-xl xl:text-2xl mb-2 leading-relaxed px-8 sm:px-0">I’m a software engineering student based in Copenhagen with a strong passion for development and problem-solving. I enjoy working on both personal projects and large-scale organizational workflows that require collaboration, creativity, and an agile mindset.<br /> <br />
+            Take a look around to explore my work, and discover some of the projects I’ve built — with many more still in progress! Feel free to contact me if you have any questions or want to work together.</p>
         
         </motion.div>
     );

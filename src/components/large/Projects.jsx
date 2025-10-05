@@ -52,20 +52,20 @@ function Projects() {
                 </motion.h1>
                 <div className="w-full mt-10 sm:mt-16 md:mt-20 lg:mt-25 flex flex-col gap-y-12 sm:gap-y-20 md:gap-y-28 lg:gap-y-35 px-0 sm:px-4 md:px-8 max-w-3xl md:max-w-none mx-auto">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-y-16 md:gap-y-0 md:gap-x-8 lg:gap-x-16">
-                    <ProjectCard title="Bookly" description="A book recommendation system" image={booklyFrontTwo} link="https://bookly.com" number="(01)" date="Finished 2025." projectId="bookly" />
-                    <ProjectCard title="Bookly" description="A book recommendation system" image={booklyFront} link="https://bookly.com" number="(01)" date="Finished 2025." projectId="bookly" />
+                    <ProjectCard title="Bookly" image={booklyFrontTwo} number="(01)" date="Finished 2025." projectId="bookly" />
+                    <ProjectCard title="Bookly" image={booklyFront} number="(01)" date="Finished 2025." projectId="bookly" />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-y-16 md:gap-y-0 md:gap-x-8 lg:gap-x-16">
-                    <ProjectCard title="CookAI" description="A recipe recommendation system" image={cookaiFrontTwo} link="https://cookai.com" number="(02)" date="Finished 2024." projectId="cookai" />
-                    <ProjectCard title="CookAI" description="A recipe recommendation system" image={cookaiFront} link="https://cookai.com" number="(02)" date="Finished 2024." projectId="cookai" />
+                    <ProjectCard title="CookAI" image={cookaiFrontTwo} number="(02)" date="Finished 2024." projectId="cookai" />
+                    <ProjectCard title="CookAI" image={cookaiFront} number="(02)" date="Finished 2024." projectId="cookai" />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-y-16 md:gap-y-0 md:gap-x-8 lg:gap-x-16">
-                    <ProjectCard title="CyberMatch" description="A cyber security company website" image={cybermatchFrontTwo} link="https://cybermatch.com" number="(03)" date="Finished 2024." projectId="cybermatch" />
-                    <ProjectCard title="" description="A cyber security company website" image={cybermatchFront} link="https://cybermatch.com" number="" date="Finished 2024." projectId="cybermatch" />
+                    <ProjectCard title="CyberMatch" image={cybermatchFrontTwo} number="(03)" date="Finished 2024." projectId="cybermatch" />
+                    <ProjectCard title="CyberMatch" image={cybermatchFront} number="(03)" date="Finished 2024." projectId="cybermatch" />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-y-16 md:gap-y-0 md:gap-x-8 lg:gap-x-16">
-                    <ProjectCard title="PseudoMat" description="A pseudomat website" image={pseudomatFrontTwo} link="https://pseudomat.com" number="(04)" date="Finished 2024." projectId="pseudomat" />
-                    <ProjectCard title="PseudoMat" description="A pseudomat website" image={pseudomatFront} link="https://pseudomat.com" number="(04)" date="Finished 2024." projectId="pseudomat" />
+                    <ProjectCard title="PseudoMat" image={pseudomatFrontTwo} number="(04)" date="Finished 2024." projectId="pseudomat" />
+                    <ProjectCard title="PseudoMat" image={pseudomatFront} number="(04)" date="Finished 2024." projectId="pseudomat" />
                     </div>
                 </div>
             </div>
