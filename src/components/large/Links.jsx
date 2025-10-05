@@ -12,7 +12,7 @@ function LinkItem({ href, label, number, index }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="text-xl font-base py-2 border-b border-gray-400 block px-2 -mx-2 rounded"
+      className="text-base sm:text-lg md:text-xl font-base py-2 border-b border-gray-400 block px-2 -mx-2 rounded"
       initial={{
         opacity: 0,
         y: 20,
@@ -35,7 +35,7 @@ function LinkItem({ href, label, number, index }) {
         delay: 0.0 + index * 0.00,
       }}
     >
-      <span className="mr-5 text-gray-500">{number}</span> {label}
+      <span className="mr-3 sm:mr-5 text-gray-500">{number}</span> {label}
     </motion.a>
   );
 }
@@ -46,13 +46,14 @@ function Links() {
 
   return (
     <div>
-      <div className="py-20 pb-70 justify-center w-full h-screen relative z-20 bg-[#ececec] flex jutify-between gap-x-20 px-10">
-        <div className="w-2/6">
+      <div className="py-10 sm:py-16 md:py-20 pb-20 sm:pb-40 md:pb-70 justify-center w-full min-h-screen md:h-screen relative z-20 bg-[#ececec] flex flex-col md:flex-row justify-between gap-y-12 md:gap-x-12 lg:gap-x-20 px-4 sm:px-8 md:px-10">
+        <div className="w-full md:w-2/6">
+          <h2 className="text-center font-medium text-base sm:text-lg mb-6 sm:mb-8 md:hidden">(LINKS)</h2>
           <motion.img
             ref={imageRef}
             src={albertImg}
             alt="albert"
-            className="w-full h-2/3 object-cover rounded-lg shadow-[0_0_16px_rgba(0,0,0,0.15)] mb-5 mt-10"
+            className="w-full max-w-md md:max-w-none mx-auto md:mx-0 h-64 sm:h-80 md:h-2/3 object-cover rounded-lg shadow-[0_0_16px_rgba(0,0,0,0.15)] mb-5 mt-0 sm:mt-5 md:mt-10"
             loading="eager"
             decoding="async"
             style={{
@@ -79,7 +80,7 @@ function Links() {
               delay: 0.1,
             }}
           />
-          <div className="flex flex-col gap-y-5">
+          <div className="flex flex-col gap-y-4 sm:gap-y-5 max-w-md md:max-w-none mx-auto md:mx-0">
             <LinkItem
               href="https://www.linkedin.com/in/albert-agner-hansen-2a8397244/"
               label="LinkedIn"
@@ -102,10 +103,10 @@ function Links() {
             <LinkItem href="" label="Newest project" number="(04)" index={3} />
           </div>
         </div>
-        <div className="w-4/6">
-          <div className="mt-20">
+        <div className="w-full md:w-4/6">
+          <div className="mt-0 sm:mt-10 md:mt-20">
             <motion.h1
-              className="font-medium text-5xl"
+              className="font-medium text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-snug"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{
@@ -115,13 +116,13 @@ function Links() {
               }}
               viewport={{ once: true, margin: "-100px" }}
             >
-              &nbsp; &nbsp; &nbsp; I am always looking for new opportunities to
+              I am always looking for new opportunities to
               work on interesting projects.
             </motion.h1>
             <br />
             <br />
             <motion.h1
-              className="font-medium text-5xl"
+              className="font-medium text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-snug"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{
@@ -137,7 +138,7 @@ function Links() {
           </div>
         </div>
       </div>
-      <div className="h-32 justify-center w-full z-20 bg-[#ececec]"></div>
+      <div className="h-16 sm:h-24 md:h-32 justify-center w-full z-20 bg-[#ececec]"></div>
     </div>
   );
 }

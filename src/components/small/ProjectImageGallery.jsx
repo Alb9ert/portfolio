@@ -6,6 +6,11 @@ import 'react-image-gallery/styles/css/image-gallery.css';
 function ProjectImageGallery({ images }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
+  
+  if (!images || images.length === 0) {
+    return null;
+  }
+  
   const galleryImages = images.map(image => ({
     original: image,
     thumbnail: image,
@@ -14,8 +19,8 @@ function ProjectImageGallery({ images }) {
   return (
       <motion.div
         ref={ref}
-        className="w-1/2 border-2 border-black custom-gallery relative"
-        style={{ height: '404px' }}
+        className="w-full md:w-3/4 lg:w-1/2 border-2 border-black custom-gallery relative"
+        style={{ height: 'auto' }}
         initial={{ 
           opacity: 0,
           y: 20
@@ -41,18 +46,60 @@ function ProjectImageGallery({ images }) {
         }
         
         .custom-gallery .image-gallery-image {
-          height: 400px !important;
+          height: 250px !important;
           width: 100% !important;
           object-fit: cover !important;
           object-position: center top !important;
         }
         
         .custom-gallery .image-gallery-slide {
-          height: 400px !important;
+          height: 250px !important;
         }
         
         .custom-gallery .image-gallery-content {
-          height: 400px !important;
+          height: 250px !important;
+        }
+
+        @media (min-width: 640px) {
+          .custom-gallery .image-gallery-image {
+            height: 300px !important;
+          }
+          
+          .custom-gallery .image-gallery-slide {
+            height: 300px !important;
+          }
+          
+          .custom-gallery .image-gallery-content {
+            height: 300px !important;
+          }
+        }
+
+        @media (min-width: 768px) {
+          .custom-gallery .image-gallery-image {
+            height: 350px !important;
+          }
+          
+          .custom-gallery .image-gallery-slide {
+            height: 350px !important;
+          }
+          
+          .custom-gallery .image-gallery-content {
+            height: 350px !important;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .custom-gallery .image-gallery-image {
+            height: 400px !important;
+          }
+          
+          .custom-gallery .image-gallery-slide {
+            height: 400px !important;
+          }
+          
+          .custom-gallery .image-gallery-content {
+            height: 400px !important;
+          }
         }
 
       `}</style>

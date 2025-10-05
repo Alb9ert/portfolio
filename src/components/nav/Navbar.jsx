@@ -152,9 +152,7 @@ function ContactButton({ href, label, index }) {
 }
 
 function Navbar() {
-  const portfolioRef = useRef(null);
   const mobileMenuRef = useRef(null);
-  const isInView = useInView(portfolioRef, { once: true, margin: "-50px" });
   const isMobileMenuInView = useInView(mobileMenuRef, { once: true, margin: "-50px" });
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -162,35 +160,17 @@ function Navbar() {
     <>
       <nav className={`px-4 md:px-14 py-7 flex items-center justify-between font-medium fixed top-0 left-0 right-0 z-[9999] transition-colors duration-300 ${isMobileMenuOpen ? 'bg-[#ececec]' : 'bg-transparent'}`}>
         {/* Left section - Portfolio */}
-        <div className="flex-1 flex justify-start items-center">
+        <motion.div 
+          className="flex-1 flex justify-start items-center"
+          initial="hidden"
+          animate="visible"
+          custom={0}
+          variants={waterfallAnimation}
+        >
           <a className="text-2xl md:text-4xl leading-tight font-bold" href="/">
-            <motion.span
-              ref={portfolioRef}
-              initial={{
-                opacity: 0,
-                y: 20,
-              }}
-              animate={
-                isInView
-                  ? {
-                      opacity: 1,
-                      y: 0,
-                    }
-                  : {
-                      opacity: 0,
-                      y: 20,
-                    }
-              }
-              transition={{
-                duration: 1.2,
-                ease: [0.19, 1, 0.22, 1],
-                delay: 0.1,
-              }}
-            >
-              Portfolio
-            </motion.span>
+            Portfolio
           </a>
-        </div>
+        </motion.div>
         
         {/* Desktop navigation */}
         <div className="hidden xl:flex flex-1 justify-end mr-68">
@@ -254,7 +234,7 @@ function Navbar() {
             <NavItem href="#skills" label="SKILLS" index={2} onMobileMenuClose={() => setIsMobileMenuOpen(false)} />
             <NavItem href="#projects" label="PROJECTS" index={3} onMobileMenuClose={() => setIsMobileMenuOpen(false)} />
             <NavItem href="#contact" label="LINKS" index={4} onMobileMenuClose={() => setIsMobileMenuOpen(false)} />
-            <li>
+            <li className="-mt-3">
               <div className="w-screen -mx-4">
                 <ContactButton href="#contact" label="CONTACT ME" index={5} />
               </div>

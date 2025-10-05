@@ -31,10 +31,26 @@ function About() {
                 delay: 0.1,
             }}
         >
-            <h1 className="text-center sm:text-left text-sm sm:text-base md:text-lg ml-1 font-arcade mb-2 sm:mb-3 font-medium text-arcade">Hello, my name is</h1>
-            <h1 className="text-center sm:text-left text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-1 sm:mb-2 font-semibold leading-tight">Albert Hansen</h1>
-            <h1 className="text-center sm:text-left text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold mb-8 sm:mb-10 md:mb-12 lg:mb-14 leading-tight">I love writing code!</h1>
-            <p className="text-base sm:text-lg md:text-xl xl:text-2xl mb-2 leading-relaxed px-8 sm:px-0 ">I am an software engineering student based in Denmark, with an eye for development. I love working on personal projects as well as big organizational projects that requires teamwork and an agile approach. <br /> <br />Check out my page and gain an insight of what I have to offer, as well as have some fun with some old projects I have made with plenty still in the works!</p>
+            <h1 className="text-center sm:text-left text-sm sm:text-base md:text-lg ml-0 sm:ml-1 font-arcade mb-2 sm:mb-3 font-medium text-arcade">Hello, my name is</h1>
+            <motion.h1 
+                className="text-center sm:text-left text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-1 sm:mb-2 font-semibold leading-tight"
+                initial={{ x: -200, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
+                viewport={{ once: true }}
+            >
+                Albert Hansen
+            </motion.h1>
+            <motion.h1 
+                className="text-center sm:text-left text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold mb-8 sm:mb-10 md:mb-12 lg:mb-14 leading-tight"
+                initial={{ x: 200, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
+                viewport={{ once: true }}
+            >
+                I love writing code!
+            </motion.h1>
+            <p className="text-center sm:text-left text-base sm:text-lg md:text-xl xl:text-2xl mb-2 leading-relaxed px-8 sm:px-0">I am an software engineering student based in Denmark, with an eye for development. I love working on personal projects as well as big organizational projects that requires teamwork and an agile approach. <br /> <br />Check out my page and gain an insight of what I have to offer, as well as have some fun with some old projects I have made with plenty still in the works!</p>
         
         </motion.div>
     );

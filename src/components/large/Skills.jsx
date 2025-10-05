@@ -29,19 +29,20 @@ function Skills() {
     <motion.div
       ref={sectionRef}
       style={{ y }}
-      className="w-full pt-5 relative z-10 min-h-screen -mt-24 px-14"
+      className="w-full pt-5 relative z-10 min-h-screen -mt-24 px-4 sm:px-8 md:px-10 lg:px-14"
     >
       {/* Solid background layer */}
       <div className="absolute inset-0 bg-[#ececec] -z-10" />
       {/* Arcade green overlay */}
       <div className="absolute inset-0 bg-arcadegreen -z-10" />
 
-      <div className=" py-20 font-medium text-8xl relative overflow-hidden">
+      <div className="py-10 sm:py-16 md:py-20 font-medium text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl relative overflow-hidden">
         <motion.h1
           initial={{ x: -200, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
           viewport={{ once: true }}
+          className="leading-tight"
         >
           TECHNICAL SKILLS
         </motion.h1>
@@ -50,12 +51,13 @@ function Skills() {
           whileInView={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
           viewport={{ once: true }}
+          className="leading-tight"
         >
           AND TOOLS
         </motion.h1>
       </div>
 
-      <div className="flex grid grid-cols-2 gap-x-8 gap-y-14">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-10 sm:gap-y-14 max-w-2xl lg:max-w-none mx-auto">
         {/* Pair 1 */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -170,7 +172,7 @@ function Skills() {
        </div>
        
        <motion.p 
-         className="mt-32 mb-5 text-m opacity-60 ml-10 tracking-wide"
+         className="mt-16 sm:mt-24 md:mt-32 mb-5 text-sm sm:text-base opacity-60 ml-0 sm:ml-10 tracking-wide"
          initial={{ opacity: 0, y: 30 }}
          whileInView={{ opacity: 1, y: 0 }}
          transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
@@ -179,7 +181,7 @@ function Skills() {
          ADDITIONALLY
        </motion.p>
        
-       <div className="flex gap-6 pb-80">
+       <div className="flex flex-col md:flex-row gap-6 pb-40 sm:pb-60 md:pb-80">
         <Skillbox
           title="Programming languages"
           skills={[
