@@ -169,19 +169,19 @@ function Skills() {
             logoSize="w-5/6"
           />
         </motion.div>
-       </div>
-       
-       <motion.p 
-         className="mt-16 sm:mt-24 md:mt-32 mb-5 text-sm sm:text-base opacity-60 ml-0 sm:ml-10 tracking-wide"
-         initial={{ opacity: 0, y: 30 }}
-         whileInView={{ opacity: 1, y: 0 }}
-         transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
-         viewport={{ once: true }}
-       >
-         ADDITIONALLY
-       </motion.p>
-       
-       <div className="flex flex-col md:flex-row gap-6 pb-40 sm:pb-60 md:pb-80">
+      </div>
+
+      <motion.p
+        className="mt-16 sm:mt-24 md:mt-32 mb-5 text-sm sm:text-base opacity-60 ml-0 sm:ml-10 tracking-wide"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
+        viewport={{ once: true }}
+      >
+        ADDITIONALLY
+      </motion.p>
+
+      <div className="flex flex-col md:flex-row gap-6 pb-40 sm:pb-60 md:pb-80">
         <Skillbox
           title="Programming languages"
           skills={[
@@ -212,6 +212,8 @@ function Skills() {
         <Skillbox
           title="Methodologies & Soft Skills"
           skills={[
+            "DevOps",
+            "CI/CD",
             "Agile programming",
             "Scrum",
             "Problem based learning",

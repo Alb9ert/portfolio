@@ -9,68 +9,152 @@ import cybermatchFront from "../../assets/projects/cybermatchFront.png";
 import cybermatchFrontTwo from "../../assets/projects/cybermatchFront2.png";
 import pseudomatFront from "../../assets/projects/pseudomatFront.png";
 import pseudomatFrontTwo from "../../assets/projects/pseudomatFront2.png";
+import boligbotFront from "../../assets/projects/boligbotFront.png";
+import boligbotFront2 from "../../assets/projects/boligbotFront2.png";
+import educadoFront from "../../assets/projects/educadoFront.png";
+import educadoFront2 from "../../assets/projects/educadoFront2.jpg";
 
 function Projects() {
-    const sectionRef = useRef(null);
+  const sectionRef = useRef(null);
 
-    // Scroll progress for the card slide-up effect
-    const { scrollYProgress: sectionProgress } = useScroll({
-        target: sectionRef,
-        offset: ["start end", "start start"],
-    });
+  // Scroll progress for the card slide-up effect
+  const { scrollYProgress: sectionProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "start start"],
+  });
 
-    // Card slide-up effect - starts just below and slides up to cover
-    const y = useTransform(sectionProgress, [0, 1], [100, 0]);
+  // Card slide-up effect - starts just below and slides up to cover
+  const y = useTransform(sectionProgress, [0, 1], [100, 0]);
 
-    return (
-        <motion.div
-            ref={sectionRef}
-            style={{ y }}
-            className="w-full pt-5 relative z-10 min-h-screen -mt-24 px-4 sm:px-8 md:px-10 lg:px-14 pb-20 sm:pb-32 md:pb-40 lg:pb-50"
+  return (
+    <motion.div
+      ref={sectionRef}
+      style={{ y }}
+      className="w-full pt-5 relative z-10 min-h-screen -mt-24 px-4 sm:px-8 md:px-10 lg:px-14 pb-20 sm:pb-32 md:pb-40 lg:pb-50"
+    >
+      {/* Solid background layer */}
+      <div className="absolute inset-0 bg-white -z-10" />
+
+      <div className="py-10 sm:py-16 md:py-20 font-medium text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl relative overflow-hidden">
+        <motion.h1
+          initial={{ x: -200, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
+          viewport={{ once: true }}
+          className="leading-tight"
         >
-            {/* Solid background layer */}
-            <div className="absolute inset-0 bg-white -z-10" />
-            
-            <div className="py-10 sm:py-16 md:py-20 font-medium text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl relative overflow-hidden">
-                <motion.h1
-                    initial={{ x: -200, opacity: 0 }}
-                    whileInView={{ x: 0, opacity: 1 }}
-                    transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
-                    viewport={{ once: true }}
-                    className="leading-tight"
-                >
-                    PROJECTS
-                </motion.h1>
-                <motion.h1
-                    initial={{ x: 200, opacity: 0 }}
-                    whileInView={{ x: 0, opacity: 1 }}
-                    transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
-                    viewport={{ once: true }}
-                    className="text-center leading-tight"
-                >
-                    AND CONTRIBUTIONS
-                </motion.h1>
-                <div className="w-full mt-10 sm:mt-16 md:mt-20 lg:mt-25 flex flex-col gap-y-12 sm:gap-y-20 md:gap-y-28 lg:gap-y-35 px-0 sm:px-4 md:px-8 max-w-3xl md:max-w-none mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-y-16 md:gap-y-0 md:gap-x-8 lg:gap-x-16">
-                    <ProjectCard title="Bookly" image={booklyFrontTwo} number="(01)" date="Finished 2025." projectId="bookly" />
-                    <ProjectCard title="Bookly" image={booklyFront} number="(01)" date="Finished 2025." projectId="bookly" />
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-y-16 md:gap-y-0 md:gap-x-8 lg:gap-x-16">
-                    <ProjectCard title="CookAI" image={cookaiFrontTwo} number="(02)" date="Finished 2024." projectId="cookai" />
-                    <ProjectCard title="CookAI" image={cookaiFront} number="(02)" date="Finished 2024." projectId="cookai" />
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-y-16 md:gap-y-0 md:gap-x-8 lg:gap-x-16">
-                    <ProjectCard title="CyberMatch" image={cybermatchFrontTwo} number="(03)" date="Finished 2024." projectId="cybermatch" />
-                    <ProjectCard title="CyberMatch" image={cybermatchFront} number="(03)" date="Finished 2024." projectId="cybermatch" />
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-y-16 md:gap-y-0 md:gap-x-8 lg:gap-x-16">
-                    <ProjectCard title="PseudoMat" image={pseudomatFrontTwo} number="(04)" date="Finished 2024." projectId="pseudomat" />
-                    <ProjectCard title="PseudoMat" image={pseudomatFront} number="(04)" date="Finished 2024." projectId="pseudomat" />
-                    </div>
-                </div>
-            </div>
-        </motion.div>
-    );
+          PROJECTS
+        </motion.h1>
+        <motion.h1
+          initial={{ x: 200, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
+          viewport={{ once: true }}
+          className="text-center leading-tight"
+        >
+          AND CONTRIBUTIONS
+        </motion.h1>
+        <div className="w-full mt-10 sm:mt-16 md:mt-20 lg:mt-25 flex flex-col gap-y-12 sm:gap-y-20 md:gap-y-28 lg:gap-y-35 px-0 sm:px-4 md:px-8 max-w-3xl md:max-w-none mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-y-16 md:gap-y-0 md:gap-x-8 lg:gap-x-16">
+            <ProjectCard
+              title="Bookly"
+              image={booklyFrontTwo}
+              number="(01)"
+              date="Finished 2025."
+              projectId="bookly"
+            />
+            <ProjectCard
+              title="Bookly"
+              image={booklyFront}
+              number="(01)"
+              date="Finished 2025."
+              projectId="bookly"
+            />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-y-16 md:gap-y-0 md:gap-x-8 lg:gap-x-16">
+            <ProjectCard
+              title="BoligBot"
+              image={boligbotFront}
+              number="(02)"
+              date="Finished 2025."
+              projectId="boligbot"
+            />
+            <ProjectCard
+              title="BoligBot"
+              image={boligbotFront2}
+              number="(02)"
+              date="Finished 2025."
+              projectId="boligbot"
+            />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-y-16 md:gap-y-0 md:gap-x-8 lg:gap-x-16">
+            <ProjectCard
+              title="Educado"
+              image={educadoFront2}
+              number="(03)"
+              date="Finished 2026."
+              projectId="educado"
+            />
+            <ProjectCard
+              title="Educado"
+              image={educadoFront}
+              number="(03)"
+              date="Finished 2026."
+              projectId="educado"
+            />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-y-16 md:gap-y-0 md:gap-x-8 lg:gap-x-16">
+            <ProjectCard
+              title="CookAI"
+              image={cookaiFrontTwo}
+              number="(04)"
+              date="Finished 2024."
+              projectId="cookai"
+            />
+            <ProjectCard
+              title="CookAI"
+              image={cookaiFront}
+              number="(04)"
+              date="Finished 2024."
+              projectId="cookai"
+            />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-y-16 md:gap-y-0 md:gap-x-8 lg:gap-x-16">
+            <ProjectCard
+              title="CyberMatch"
+              image={cybermatchFrontTwo}
+              number="(05)"
+              date="Finished 2024."
+              projectId="cybermatch"
+            />
+            <ProjectCard
+              title="CyberMatch"
+              image={cybermatchFront}
+              number="(05)"
+              date="Finished 2024."
+              projectId="cybermatch"
+            />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-y-16 md:gap-y-0 md:gap-x-8 lg:gap-x-16">
+            <ProjectCard
+              title="PseudoMat"
+              image={pseudomatFrontTwo}
+              number="(06)"
+              date="Finished 2024."
+              projectId="pseudomat"
+            />
+            <ProjectCard
+              title="PseudoMat"
+              image={pseudomatFront}
+              number="(06)"
+              date="Finished 2024."
+              projectId="pseudomat"
+            />
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
 }
 
 export default Projects;
