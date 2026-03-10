@@ -32,7 +32,7 @@ function LinkItem({ href, label, number, index }) {
       transition={{
         duration: 0.1,
         ease: [0.19, 1, 0.22, 1],
-        delay: 0.0 + index * 0.00,
+        delay: 0.0 + index * 0.0,
       }}
     >
       <span className="mr-3 sm:mr-5 text-gray-500">{number}</span> {label}
@@ -48,7 +48,9 @@ function Links() {
     <div>
       <div className="py-10 sm:py-16 md:py-20 pb-20 sm:pb-40 md:pb-70 justify-center w-full min-h-screen md:h-screen relative z-20 bg-[#ececec] flex flex-col md:flex-row justify-between gap-y-12 md:gap-x-12 lg:gap-x-20 px-4 sm:px-8 md:px-10">
         <div className="w-full md:w-2/6">
-          <h2 className="text-center font-medium text-base sm:text-lg mb-6 sm:mb-8 md:hidden">(LINKS)</h2>
+          <h2 className="text-center font-medium text-base sm:text-lg mb-6 sm:mb-8 md:hidden">
+            (LINKS)
+          </h2>
           <motion.img
             ref={imageRef}
             src={albertImg}
@@ -100,7 +102,12 @@ function Links() {
               number="(03)"
               index={2}
             />
-            <LinkItem href="" label="Newest project" number="(04)" index={3} />
+            <LinkItem
+              href="https://boligbot.vercel.app/"
+              label="Newest project"
+              number="(04)"
+              index={3}
+            />
           </div>
         </div>
         <div className="w-full md:w-4/6">
@@ -116,8 +123,8 @@ function Links() {
               }}
               viewport={{ once: true, margin: "-100px" }}
             >
-              I am always looking for new opportunities to
-              work on interesting projects.
+              I am always looking for new opportunities to work on interesting
+              projects.
             </motion.h1>
             <br />
             <br />
