@@ -1,21 +1,131 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import ProjectCard from "../small/ProjectCard";
-import booklyFront from "../../assets/projects/booklyFront.png";
-import booklyFrontTwo from "../../assets/projects/booklyFront.jpg";
-import cookaiFront from "../../assets/projects/cookaiFront.png";
-import cookaiFrontTwo from "../../assets/projects/cookaiFront2.jpg";
-import cybermatchFront from "../../assets/projects/cybermatchFront.png";
-import cybermatchFrontTwo from "../../assets/projects/cybermatchFront2.png";
-import pseudomatFront from "../../assets/projects/pseudomatFront.png";
-import pseudomatFrontTwo from "../../assets/projects/pseudomatFront2.png";
-import boligbotFront from "../../assets/projects/boligbotFront.png";
-import boligbotFront2 from "../../assets/projects/boligbotFront2.png";
-import educadoFront from "../../assets/projects/educadoFront.png";
-import educadoFront2 from "../../assets/projects/educadoFront2.jpg";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import { projectsByDate } from "../../data/projectData";
+import { searchProjects } from "../../utils/projectSearch";
+import { Star } from "lucide-react";
+
+const EASE = [0.19, 1, 0.22, 1];
+const projects = projectsByDate;
+
+// Wraps the parts of `text` that match any search term in a highlight.
+// Short terms like "ai" only match whole words so they don't light up inside other words
+function Highlight({ text, terms }) {
+  if (!terms.length) return text;
+  const escape = (t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const pattern = new RegExp(
+    `(${terms.map((t) => (t.length <= 3 ? `\\b${escape(t)}\\b` : escape(t))).join("|")})`,
+    "gi",
+  );
+  return text.split(pattern).map((part, i) =>
+    i % 2 ? (
+      <mark key={i} className="bg-black text-[#e8e8e7] rounded-[3px] px-0.5">
+        {part}
+      </mark>
+    ) : (
+      part
+    ),
+  );
+}
+
+// Heading line that slides up from behind a mask; triggered by the parent heading
+function Reveal({ children, delay = 0, className = "" }) {
+  return (
+    <span className={`block overflow-hidden ${className}`}>
+      <motion.span
+        className="block"
+        variants={{
+          hidden: { y: "110%" },
+          visible: { y: 0, transition: { duration: 1.1, ease: EASE, delay } },
+        }}
+      >
+        {children}
+      </motion.span>
+    </span>
+  );
+}
+
+function ProjectRow({ project, terms }) {
+  return (
+    <motion.li
+      layout
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, transition: { duration: 0.15 } }}
+      transition={{ duration: 0.4, ease: EASE }}
+      className="group relative border-t border-black/15 cursor-pointer"
+    >
+      <div className="grid md:grid-cols-[2.5rem_14rem_1fr_auto] items-start md:items-center gap-x-8 gap-y-2 py-5 md:py-6">
+        <span className="hidden md:block text-xs text-black/40 tabular-nums">
+          {project.number}
+        </span>
+
+        {/* The link stretches over the whole row */}
+        <span className="flex items-baseline justify-between gap-3">
+          {/* No transform on the link itself, or its overlay would shrink to the title */}
+          <Link
+            to={`/project/${project.id}`}
+            className="text-2xl md:text-3xl font-medium after:absolute after:inset-0"
+          >
+            <span className="inline-block transition-transform duration-500 group-hover:translate-x-2">
+              <Highlight text={project.title} terms={terms} />
+              {project.stared && (
+                <Star
+                  size={18}
+                  strokeWidth={1.8}
+                  aria-label="Featured project"
+                  className="inline-block shrink-0 ml-2 mb-1"
+                />
+              )}{" "}
+            </span>
+            {project.type && (
+              <span className="block text-xs font-normal text-black/50 mt-1">
+                <Highlight text={project.type} terms={terms} />
+              </span>
+            )}
+          </Link>
+          <span className="md:hidden text-xs text-black/50 tabular-nums">
+            {project.year}
+          </span>
+        </span>
+
+        <span>
+          <span className="block text-sm text-black/60 leading-snug">
+            <Highlight text={project.description} terms={terms} />
+          </span>
+          {/* Key features as plain labels; clicks fall through to the row link */}
+          <span className="flex flex-wrap gap-1.5 mt-3">
+            {(project.features ?? []).map((feature) => (
+              <span
+                key={feature}
+                className="text-[11px] rounded-full border border-black/15 px-2.5 py-0.5 text-black/60"
+              >
+                <Highlight text={feature} terms={terms} />
+              </span>
+            ))}
+          </span>
+        </span>
+
+        <span className="hidden md:flex items-center gap-4 text-sm text-black/50 tabular-nums">
+          {project.year}
+          <span className="text-lg text-black transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1">
+            ↗
+          </span>
+        </span>
+      </div>
+    </motion.li>
+  );
+}
 
 function Projects() {
   const sectionRef = useRef(null);
+  const inputRef = useRef(null);
+  const [query, setQuery] = useState("");
 
   // Scroll progress for the card slide-up effect
   const { scrollYProgress: sectionProgress } = useScroll({
@@ -26,132 +136,105 @@ function Projects() {
   // Card slide-up effect - starts just below and slides up to cover
   const y = useTransform(sectionProgress, [0, 1], [100, 0]);
 
+  // "/" focuses the search from anywhere on the page
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === "/" && document.activeElement?.tagName !== "INPUT") {
+        e.preventDefault();
+        inputRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  const { results, highlights: terms } = searchProjects(projects, query);
+
   return (
     <motion.div
       ref={sectionRef}
       style={{ y }}
-      className="w-full pt-5 relative z-10 min-h-screen -mt-24 px-4 sm:px-8 md:px-10 lg:px-14 pb-20 sm:pb-32 md:pb-40 lg:pb-50"
+      className="w-full relative z-10 min-h-screen -mt-24 px-4 md:px-10 pt-16 md:pt-28 pb-40 md:pb-56"
     >
-      {/* Solid background layer */}
-      <div className="absolute inset-0 bg-white -z-10" />
+      <div className="absolute inset-0 bg-[#e8e8e7] -z-10 rounded-t-[2rem] md:rounded-t-[3rem] shadow-[0_-24px_60px_rgba(0,0,0,0.07)]" />
 
-      <div className="py-10 sm:py-16 md:py-20 font-medium text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl relative overflow-hidden">
-        <motion.h1
-          initial={{ x: -200, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
-          viewport={{ once: true }}
-          className="leading-tight"
+      <div className="max-w-7xl mx-auto">
+        <motion.h2
+          className="text-5xl sm:text-6xl md:text-7xl leading-[0.95] flex flex-wrap gap-x-[0.22em] mb-10 md:mb-14"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-40px" }}
         >
-          PROJECTS
-        </motion.h1>
-        <motion.h1
-          initial={{ x: 200, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
-          viewport={{ once: true }}
-          className="text-center leading-tight"
-        >
-          AND CONTRIBUTIONS
-        </motion.h1>
-        <div className="w-full mt-10 sm:mt-16 md:mt-20 lg:mt-25 flex flex-col gap-y-12 sm:gap-y-20 md:gap-y-28 lg:gap-y-35 px-0 sm:px-4 md:px-8 max-w-3xl md:max-w-none mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-y-16 md:gap-y-0 md:gap-x-8 lg:gap-x-16">
-            <ProjectCard
-              title="Bookly"
-              image={booklyFrontTwo}
-              number="(01)"
-              date="Finished 2025."
-              projectId="bookly"
-            />
-            <ProjectCard
-              title="Bookly"
-              image={booklyFront}
-              number="(01)"
-              date="Finished 2025."
-              projectId="bookly"
-            />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-y-16 md:gap-y-0 md:gap-x-8 lg:gap-x-16">
-            <ProjectCard
-              title="BoligBot"
-              image={boligbotFront}
-              number="(02)"
-              date="Finished 2025."
-              projectId="boligbot"
-            />
-            <ProjectCard
-              title="BoligBot"
-              image={boligbotFront2}
-              number="(02)"
-              date="Finished 2025."
-              projectId="boligbot"
-            />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-y-16 md:gap-y-0 md:gap-x-8 lg:gap-x-16">
-            <ProjectCard
-              title="Educado"
-              image={educadoFront2}
-              number="(03)"
-              date="Finished 2026."
-              projectId="educado"
-            />
-            <ProjectCard
-              title="Educado"
-              image={educadoFront}
-              number="(03)"
-              date="Finished 2026."
-              projectId="educado"
-            />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-y-16 md:gap-y-0 md:gap-x-8 lg:gap-x-16">
-            <ProjectCard
-              title="CookAI"
-              image={cookaiFrontTwo}
-              number="(04)"
-              date="Finished 2024."
-              projectId="cookai"
-            />
-            <ProjectCard
-              title="CookAI"
-              image={cookaiFront}
-              number="(04)"
-              date="Finished 2024."
-              projectId="cookai"
-            />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-y-16 md:gap-y-0 md:gap-x-8 lg:gap-x-16">
-            <ProjectCard
-              title="CyberMatch"
-              image={cybermatchFrontTwo}
-              number="(05)"
-              date="Finished 2024."
-              projectId="cybermatch"
-            />
-            <ProjectCard
-              title="CyberMatch"
-              image={cybermatchFront}
-              number="(05)"
-              date="Finished 2024."
-              projectId="cybermatch"
-            />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-y-16 md:gap-y-0 md:gap-x-8 lg:gap-x-16">
-            <ProjectCard
-              title="PseudoMat"
-              image={pseudomatFrontTwo}
-              number="(06)"
-              date="Finished 2024."
-              projectId="pseudomat"
-            />
-            <ProjectCard
-              title="PseudoMat"
-              image={pseudomatFront}
-              number="(06)"
-              date="Finished 2024."
-              projectId="pseudomat"
-            />
-          </div>
+          <Reveal className="font-display italic pb-[0.08em]">Selected</Reveal>
+          <Reveal delay={0.1} className="font-medium pb-[0.08em]">
+            projects
+          </Reveal>
+        </motion.h2>
+
+        {/* Search */}
+        <div className="flex items-end gap-4 border-b-2 border-black pb-3 mb-2">
+          <svg
+            viewBox="0 0 24 24"
+            className="w-6 h-6 md:w-7 md:h-7 mb-1 shrink-0"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            aria-hidden
+          >
+            <circle cx="11" cy="11" r="7" />
+            <path d="M20 20l-4-4" />
+          </svg>
+          <input
+            ref={inputRef}
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={(e) => e.key === "Escape" && setQuery("")}
+            placeholder="Try “AI projects with a database”"
+            aria-label="Search projects"
+            className="flex-1 min-w-0 bg-transparent text-2xl md:text-4xl outline-none placeholder:text-black/25"
+          />
+          {query ? (
+            <button
+              onClick={() => {
+                setQuery("");
+                inputRef.current?.focus();
+              }}
+              className="text-xs uppercase tracking-wider text-black/50 hover:text-black mb-2 cursor-pointer"
+            >
+              Clear
+            </button>
+          ) : (
+            <kbd className="hidden md:block text-xs text-black/40 border border-black/20 rounded px-1.5 py-0.5 mb-2">
+              /
+            </kbd>
+          )}
         </div>
+        <p className="text-xs text-black/50 mb-6 tabular-nums">
+          {results.length === projects.length
+            ? `${projects.length} projects`
+            : `${results.length} of ${projects.length} projects`}
+        </p>
+
+        {/* Results */}
+        <ul className="border-b border-black/15">
+          <AnimatePresence mode="popLayout" initial={false}>
+            {results.map((project) => (
+              <ProjectRow key={project.id} project={project} terms={terms} />
+            ))}
+          </AnimatePresence>
+          {results.length === 0 && (
+            <li className="py-10 text-black/50">
+              Nothing matches “{query}”.{" "}
+              <button
+                onClick={() => setQuery("")}
+                className="underline underline-offset-4 hover:text-black cursor-pointer"
+              >
+                Show all projects
+              </button>
+            </li>
+          )}
+        </ul>
       </div>
     </motion.div>
   );

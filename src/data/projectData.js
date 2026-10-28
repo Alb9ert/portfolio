@@ -1,3 +1,15 @@
+import minesweeper1 from "../assets/projectdetails/minesweeper1.svg";
+import indoornav1 from "../assets/projectdetails/indoornav1.png";
+import indoornav2 from "../assets/projectdetails/indoornav2.png";
+import indoornav3 from "../assets/projectdetails/indoornav3.png";
+import indoornav4 from "../assets/projectdetails/indoornav4.png";
+import booklyCover from "../assets/projects/booklyFront.jpg";
+import boligbotCover from "../assets/projects/boligbotFront.png";
+import educadoCover from "../assets/projects/educadoFront2.jpg";
+import cookaiCover from "../assets/projects/cookaiFront2.jpg";
+import cybermatchCover from "../assets/projects/cybermatchFront2.png";
+import pseudomatCover from "../assets/projects/pseudomatFront2.png";
+
 import bookly1 from "../assets/projectdetails/bookly1.png";
 import bookly2 from "../assets/projectdetails/bookly2.png";
 import bookly3 from "../assets/projectdetails/bookly3.png";
@@ -31,42 +43,34 @@ import educado3 from "../assets/projectdetails/educado3.png";
 
 export const projectData = {
   bookly: {
-    number: "(01)",
     title: "Bookly",
+    type: "Web app",
+    year: "2025",
+    cover: booklyCover,
+    month: "January",
     description: "Your personal library assistant",
     details:
-      "Bookly is a book recomendation system that allows users to track read books, currently reading books, and books to read. It also allows users to search for books and get recommendations based on their interests. Additionaly you can add your friends and see what they are reading. The focus of the project has been making a clean UI and effiecent UX to beat competitors like Goodreads.",
+      "Bookly is a book tracking and recommendation platform where readers keep track of what they've read, what they're reading now and what they want to read next. Personal recommendations are generated from each user's ratings and reading history, and a fast search across the Google Books and Open Library catalogues makes any title easy to find. A friend system lets users follow what the people they know are reading. The goal was to beat apps like Goodreads on usability, with a cleaner UI and a smoother experience, and Bookly grew to around 30 regular users. Building it taught me a lot about user management and how to design applications that handle large amounts of data. Not everything is solid yet: the authentication in particular isn't built as securely as it should be, and some bugs remain. Seeing those weaknesses up close taught me how authentication should be done properly, and that's a lesson I take into future projects.",
     images: [bookly1, bookly2, bookly3, bookly4, bookly5, bookly6, bookly7],
-    techStack: [
-      "React",
-      "Node.js",
-      "Express",
-      "MongoDB",
-      "TailwindCSS",
-      "TypeScript",
-      "Google Books API",
-      "Open Library API",
-      "MERN Stack",
-    ],
+    techStack: ["React", "Express", "TypeScript", "SQL Database", "Google Books API", "Open Library API"],
     liveLink: "https://bookly-teal-six.vercel.app/",
     features: [
-      "User authentication",
-      "User profile",
-      "User library",
-      "User settings",
-      "Book search",
-      "Book recommendations",
-      "Book tracking",
+      "Personal book recommendations",
+      "Search algorithm",
+      "Handling large amounts of data",
+      "API integrations",
       "Friend system",
     ],
   },
   boligbot: {
-    number: "(02)",
     title: "BoligBot",
-    description:
-      "An apartment agen that notifies when new rental apartments in copenhagen are listed",
+    type: "Web app",
+    year: "2025",
+    cover: boligbotCover,
+    month: "September",
+    description: "An apartment agent that notifies you when new rental apartments in Copenhagen are listed",
     details:
-      "BoligBot sends WhatsApp notifications to users when new rental apartments in Copenhagen are listed on Kereby or Heimdalen. The apartment market in Denmark is very competitive, and apartments are often rented out within minutes of being listed. BoligBot helps users stay ahead of the competition by providing real-time notifications of new listings. This project was made with the goal of learning how to use web scraping techniques and how to integrate with the WhatsApp API.",
+      "BoligBot watches the rental listings on Kereby and Heimstaden and sends a WhatsApp message the moment a new apartment in Copenhagen goes up. The Copenhagen rental market is extremely competitive and good apartments are often gone within minutes, so being first matters. Scheduled cron jobs scrape the sites around the clock, detect new listings and notify every user in real time. And it worked: BoligBot helped two of my friends land the apartments they live in today. The service is currently closed to new users, but the site is still live, so you can look around.",
     images: [boligbot1, boligbot2, boligbot3],
     techStack: [
       "React",
@@ -78,40 +82,41 @@ export const projectData = {
       "TailwindCSS",
     ],
     liveLink: "https://boligbot.vercel.app",
-    features: [
-      "User authentication",
-      "WhatsApp Notifications",
-      "Deactive account",
-      "Apartment search",
-    ],
+    liveNote: "Closed to new users, but the site is still live to explore",
+    features: ["Web scraping", "Scheduled cron jobs", "WhatsApp notifications"],
   },
   educado: {
-    number: "(03)",
     title: "Educado",
+    type: "Mobile app",
+    year: "2025",
+    cover: educadoCover,
+    month: "December",
     description: "Educado is a collaborative project between universities.",
     details:
       "The project is owned by Egalitarian, an organisation backed by the European Union through the Erasmus+ programme and devoted to both the management of waste in Brazil and increasing the opportunities for the waste workers at the country's biggest dumpsite. Egalitarian is a collaboration between the University of Brasília (Brazil), Minho University (Portugal), Saxion University (the Netherlands), and Aalborg University (Denmark). The project taught me how to work in large organizational structures, and I personally got the oppurtunity to go to the Netherlands.",
     images: [educado1, educado2, educado3],
-    techStack: ["React", "React Native", "Strapi", "PostgreSQL", "CI/CD"],
+    techStack: ["React Native", "Strapi", "PostgreSQL", "CI/CD"],
     githubLink: "https://github.com/ErasmusEgalitarian",
     features: [
-      "User authentication",
-      "User profile",
-      "Course listing",
-      "Course enrollment",
-      "Admin panel",
-      "Create course",
-      "Track progress",
-      "Take course",
+      "Complex project management",
+      "CI/CD pipelines",
+      "Text translations",
+      "Reducing technical debt",
     ],
   },
   cookai: {
-    number: "(04)",
     title: "CookAI",
-    description:
-      "An AI recipe assistant, where you input ingredients and recieve recipes",
+    type: "Website",
+    year: "2024",
+    cover: cookaiCover,
+    month: "February",
+    description: "An AI recipe assistant: enter the ingredients you have and get recipes back",
     details:
-      "An AI recipe assistant, where you input ingredients and the AI will suggest recipes. Both drinkable and eatable recipes are supported. You can also save your favorite recipes for later. This project was made with the goal of learning how to use the OpenAI API and how to use it in a real world application. An intersting article that I read since is https://www.theguardian.com/world/2023/aug/10/pak-n-save-savey-meal-bot-ai-app-malfunction-recipes where someone has tried to make a recipe assistant and it malfunctioned.",
+      "CookAI was the very first website I built. You enter the ingredients you have, the AI suggests recipes for both food and drinks, and you can save your favourites for later. Honestly, it's not well made: it's written in plain HTML, CSS and JavaScript without any framework, and it shows. But the idea was strong, and it pulled in a lot of users right after launch. As general AI assistants got better, they made a dedicated recipe app less necessary and the usage faded. Even so, it's the project that taught me the most early on, from integrating the OpenAI API into a real application to handling users and authentication with JWT, and it showed me how much the details matter once real people use what you build.",
+    readMore: {
+      label: "The Guardian: a supermarket's AI meal planner that suggested dangerous recipes",
+      href: "https://www.theguardian.com/world/2023/aug/10/pak-n-save-savey-meal-bot-ai-app-malfunction-recipes",
+    },
     images: [cookai1, cookai2, cookai3, cookai4],
     techStack: [
       "OpenAI API",
@@ -122,18 +127,14 @@ export const projectData = {
       "Express",
       "Git",
     ],
-    liveLink: "https://cookai.dk",
-    features: [
-      "Recommendation system",
-      "User authentication",
-      "User profile",
-      "User library",
-      "User settings",
-    ],
+    features: ["OpenAI integration", "Authentication with JWT", "My first website: rough, but it taught me a lot"],
   },
   cybermatch: {
-    number: "(05)",
     title: "CyberMatch",
+    type: "Web app",
+    year: "2024",
+    cover: cybermatchCover,
+    month: "September",
     description:
       "A cyber security company website that allows users to search for jobs and internships in the cyber security field.",
     details:
@@ -148,20 +149,14 @@ export const projectData = {
       "CSS",
       "Git",
     ],
-    features: [
-      "Job search",
-      "Job posting",
-      "Internship search",
-      "Internship posting",
-      "Company profile",
-      "Company listing",
-      "Resume parsing",
-      "AI-powered job matching",
-    ],
+    features: ["Document processing", "Anonymous data handling", "Social media features"],
   },
   pseudomat: {
-    number: "(06)",
     title: "PseudoMat",
+    type: "Programming language",
+    year: "2025",
+    cover: pseudomatCover,
+    month: "December",
     description:
       "An interpeter to execute a pseudo like language with built in mathematical features.",
     details:
@@ -171,11 +166,50 @@ export const projectData = {
     techStack: ["Ocaml", "OCamllex", "OCamlparser", "Dune", "Git"],
 
     features: [
-      "Well defined language",
       "Built in mathematical features",
       "Interpreter",
       "Parser",
       "Lexer",
     ],
   },
+  minesweeper: {
+    title: "Minesweeper",
+    type: "Terminal game",
+    year: "2023",
+    month: "October",
+    cover: minesweeper1,
+    description: "The classic game, written in C and played right in the terminal",
+    details:
+      "Minesweeper was the first program I ever built: the classic game, written in C and played right in the terminal. It's far from pretty. Everything lives in one big file, and the code shows I was just starting out. But building it without any external libraries meant writing all the game logic myself, from placing the mines and counting neighbours to revealing empty areas and detecting wins and losses, which turned out to be surprisingly complex. It's also the project where I learned to use Git, and it was a lot of fun to make.",
+    images: [minesweeper1],
+    githubLink: "https://github.com/Alb9ert/Minesweeper",
+    techStack: ["C", "Git"],
+    features: ["Complete Minesweeper game", "No external libraries"],
+  },
+  indoornav: {
+    title: "Indoor Nav",
+    type: "Web app (PWA)",
+    year: "2026",
+    month: "June",
+    stared: true,
+    cover: indoornav1,
+    description: "Indoor navigation system for the AAU Copenhagen campus",
+    details:
+      "Indoor Nav is my bachelor project: a full-stack web app that helps students and staff find their way around Aalborg University's Copenhagen campus. You search for any room, pick a simple, fast or accessible route, and get directions across floors and buildings, shown on an interactive 2D map or a 3D view of the stacked floors. Routes are calculated with A* pathfinding over a graph of the buildings, and the floor plans are calibrated against real-world coordinates so positions on the map match the actual campus. Spatial data lives in PostgreSQL with PostGIS, and the floors are rendered in 3D with Three.js. It's the most complex software design I've worked on.",
+    images: [indoornav1, indoornav2, indoornav3, indoornav4],
+    liveLink: "https://nav.ollioddi.dk/",
+    githubLink: "https://github.com/AAU-Bachelor-Group/Indoor-nav",
+    techStack: ["React", "TanStack Start", "TypeScript", "Three.js", "PostgreSQL + PostGIS", "Prisma", "Tailwind CSS", "Docker", "Vitest", "Zod"],
+    features: ["3D modelling", "A* pathfinding", "Complex software design", "Real-world floor plan calibration"],
+  },
 };
+
+// Projects ordered newest first, numbered 01, 02, ... in that order. Used by the project
+// list and the "Next project" link, so new projects slot in by their date automatically.
+const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const dateValue = (p) => Number(p.year) * 12 + Math.max(MONTHS.indexOf(p.month), 0);
+
+export const projectsByDate = Object.entries(projectData)
+  .map(([id, project]) => ({ id, ...project }))
+  .sort((a, b) => dateValue(b) - dateValue(a))
+  .map((project, i) => ({ ...project, number: String(i + 1).padStart(2, "0") }));

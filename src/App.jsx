@@ -3,9 +3,11 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from "react-route
 import Lenis from "@studio-freight/lenis"
 import Navbar from "./components/nav/Navbar"
 import Landing from "./components/large/Landing"
+import About from "./components/large/About"
 import Skills from "./components/large/Skills"
 import Projects from "./components/large/Projects"
 import Links from "./components/large/Links"
+import Outro from "./components/large/Outro"
 import ProjectDetail from "./components/large/ProjectDetail"
 
 // Global Lenis instance
@@ -56,8 +58,11 @@ function CheckpointScroll() {
 function HomePage() {
   return (
     <>
-      <div id="about">
+      <div id="home">
         <Landing />
+      </div>
+      <div id="about">
+        <About />
       </div>
       <div id="skills">
         <Skills />
@@ -68,6 +73,7 @@ function HomePage() {
       <div id="contact">
         <Links />
       </div>
+      <Outro />
     </>
   );
 }
@@ -81,8 +87,7 @@ function App() {
 
     // Initialize Lenis smooth scroll
     const lenis = new Lenis({
-      duration: 1.5,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: false, // Native wheel/trackpad scrolling; Lenis only animates nav jumps
       direction: "vertical",
       smooth: true,
       smoothTouch: false,
