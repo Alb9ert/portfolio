@@ -12,7 +12,7 @@ const links = [
   { label: "LinkedIn", detail: "Albert Agner Hansen", href: "https://www.linkedin.com/in/albert-agner-hansen-2a8397244/", icon: siLinkedin },
   { label: "GitHub", detail: "@Alb9ert", href: "https://github.com/Alb9ert", icon: siGithub },
   { label: "Email", detail: EMAIL, href: `mailto:${EMAIL}`, glyph: "mail" },
-  { label: "Newest project", detail: "BoligBot", href: "https://boligbot.vercel.app/", glyph: "spark" },
+  { label: "Newest project", detail: "Find AAU", href: "https://nav.ollioddi.dk/", glyph: "spark" },
 ];
 
 // Line symbols for links without a brand logo
